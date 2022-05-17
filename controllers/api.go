@@ -17,9 +17,9 @@ func NewApiController() *ApiController {
 func (a *ApiController) GetHeaders(ctx *fasthttp.RequestCtx) {
 	ctx.Response.Header.SetContentType("application/json")
 
-	headers := make(map[string][]byte)
+	headers := make(map[string]string)
 	ctx.Request.Header.VisitAll(func (key, value []byte) {
-		headers[string(key)] = value
+		headers[string(key)] = string(value)
 	})
 
 	reqHeadersBytes, err := json.Marshal(headers);
