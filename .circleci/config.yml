@@ -1,0 +1,23 @@
+version: 2.1
+
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: cimg/go:1.18
+    steps:
+      - checkout
+      - restore_cache: 
+        - keys:
+          - go-mod-v4-{{ checksum "go.sum" }}
+      - run: make
+      - save_cache:
+          key: go-mod-v4-{{ checksum "go.sum" }}
+          paths:
+            - "/go/pkg/mod"    
+
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - build
