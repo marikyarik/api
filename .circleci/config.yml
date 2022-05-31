@@ -7,7 +7,7 @@ executors:
   default:
     docker:
       - image: google/cloud-sdk
-    working_directory: go/src/github.com/marikyarik/api
+    working_directory: /app
 
 # Define the jobs we want to run for this project
 jobs:
