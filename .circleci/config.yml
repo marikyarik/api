@@ -27,10 +27,10 @@ jobs:
             
             docker build -t api .
             today=$(date "+%Y%m%d%H%M%S")
-            TAG=gcr.io/api/api:${today}
+            TAG=gcr.io/api-circleci-test/api:${today}
             docker tag api $TAG
             docker push $TAG
-            LATEST_TAG=gcr.io/api/api:latest
+            LATEST_TAG=gcr.io/api-circleci-test/api:latest
             docker tag api $LATEST_TAG
             docker push $LATEST_TAG
 
