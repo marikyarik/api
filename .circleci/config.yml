@@ -1,28 +1,40 @@
 version: 2.1
 
+orbs:
+  gcp-cli: circleci/gcp-cli@1.8.3
+
+executors:
+  default:
+    docker:
+      - image: google/cloud-sdk
+    working_directory: go/src/github.com/marikyarik/api
+
 # Define the jobs we want to run for this project
 jobs:
   build:
-    docker:
-      - image: cimg/go:1.18
+    executor:
+      name: default
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - go-mod-v4-{{ checksum "go.sum" }}
+      - setup_remote_docker:
+          version: 18.06.0-ce
+      - gcp-cli/initialize
+      - gcp-cli/install
       - run:
-          name: Install Dependencies
-          command: go get ./...
-      - save_cache:
-          key: go-mod-v4-{{ checksum "go.sum" }}
-          paths:
-            - "/go/pkg/mod"
-      - run:
-          name: Run tests
-          command: go test -v
+          name: Push image to GCR
+          command: |
+            gcloud --quiet auth configure-docker
+            
+            docker build -t api .
+            today=$(date "+%Y%m%d%H%M%S")
+            TAG=gcr.io/api/api:${today}
+            docker tag api $TAG
+            docker push $TAG
+            LATEST_TAG=gcr.io/api/api:latest
+            docker tag api $LATEST_TAG
+            docker push $LATEST_TAG
 
 workflows:
-  version: 2
-  build-workflow:
+  deploy_gcr:
     jobs:
       - build
