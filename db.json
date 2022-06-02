@@ -1,0 +1,20 @@
+{
+ "routes": {
+  "localhost": "api"
+ },
+ "users": [
+  {
+   "id": "UhZTFo0HuWvQg8Q0RXHh",
+   "active": true,
+   "headers": {
+    "X-User-Affiliate": "Nordstrom,james_002,account_01,account_02,account_03,account_04,account_05,account_06,account_07,account_08,account_09,account_10,account_11,account_12,account_13,account_14,account_15,account_16,account_17,account_18,account_19,account_20,account_21,account_22,account_23,account_24,account_25,account_26,account_27,account_28,account_29,account_30",
+    "X-User-Email": "os-maxim.kopeyka@rakuten.com",
+    "X-User-Groups": "WyJhZGRhc2gtYWRtaW4tdXNlcnMiLCJhZGRhc2gtdXNlcnMiLCJpYXAtYWRtaW4tdXNlcnMiLCJsZWdhY3lwdWJkYXNoLXVzZXJzIiwicHViZGFzaC1hZG1pbi11c2VycyIsInB1YmRhc2gtdXNlcnMiXQ==",
+    "X-User-Legacy": "test-legacy-value",
+    "X-User-Sid": "389ceee2-6aad-42d7-8c56-ce34d8825c51",
+    "X-User-Sub": "896e8143-6296-464e-820e-81e425414b24",
+    "X-User-Username": "mako"
+   }
+  }
+ ]
+}
